@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:retro_calculator/screens/calculator_screen.dart';
+import 'package:retro_calculator/screens/calculator/calculator_screen.dart';
 import 'package:retro_calculator/utils/constant.dart';
 
 void main() {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:retro_calculator/utils/constant.dart';
+
+import 'widget/display.dart';
+import '../../utils/constant.dart';
 
 class CalculatorScreen extends StatefulWidget {
   @override
@@ -26,7 +28,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
           ),
           child: Column(
             children: [
-              Text('Display'),
+              Display('0'),
               Text('Keyboard'),
             ],
           ),
