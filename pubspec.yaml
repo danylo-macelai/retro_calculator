@@ -71,6 +71,16 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
+  fonts:
+    - family: AdelleSans
+      fonts:
+        - asset: assets/fontes/AdelleSans-Regular.ttf
+          weight: 400
+        - asset: assets/fontes/AdelleSans-SemiBold.ttf
+          weight: 600
+    - family: Raleway
+      fonts:
+        - asset: assets/fontes/Raleway-SemiBold.ttf
+          weight: 600
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
