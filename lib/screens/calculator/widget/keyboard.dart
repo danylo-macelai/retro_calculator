@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import "dart:math" show pi;
 
+import 'button.dart';
+
 class Keyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,19 @@ class Keyboard extends StatelessWidget {
         child: ClipPath(
           clipper: KeyboardCustomClipper(),
           child: new Container(
-             decoration: BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(26.0),
                 bottomRight: Radius.circular(26.0),
               ),
               color: Color(0XFFEFDFBB),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Button.red(value: 'C'),
+              ],
             ),
           ),
         ),

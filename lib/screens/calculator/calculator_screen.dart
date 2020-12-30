@@ -18,13 +18,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
           padding: EdgeInsets.all(12.0),
           width: double.maxFinite,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient: mGradient(
+              Alignment.topRight,
+              Alignment.bottomLeft,
               colors: [
                 mBackgroundColor,
                 mPrimaryColor,
               ],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
             ),
           ),
           child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:retro_calculator/utils/constant.dart';
 
 class Display extends StatelessWidget {
   final String value;
@@ -11,12 +12,22 @@ class Display extends StatelessWidget {
     return Container(
       width: 380.0,
       height: 168.0,
-      decoration:
-          _decoration(Alignment.topLeft, Alignment.bottomCenter, [0.4, 1.0]),
+      decoration: BoxDecoration(
+        gradient: mGradient(
+          Alignment.topLeft,
+          Alignment.bottomCenter,
+          stops: [0.4, 1.0],
+        ),
+      ),
       child: Container(
         margin: EdgeInsets.all(10.0),
-        decoration: _decoration(
-            Alignment.bottomCenter, Alignment.topCenter, [0.1, 1.0]),
+        decoration: BoxDecoration(
+          gradient: mGradient(
+            Alignment.bottomCenter,
+            Alignment.topCenter,
+            stops: [0.1, 1.0],
+          ),
+        ),
         child: Container(
           margin: EdgeInsets.all(10.0),
           color: Color(0XFF520000),
@@ -43,21 +54,6 @@ class Display extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  BoxDecoration _decoration(
-    AlignmentGeometry begin,
-    AlignmentGeometry end,
-    List<double> stops,
-  ) {
-    return BoxDecoration(
-      gradient: LinearGradient(
-        begin: begin,
-        end: end,
-        stops: stops,
-        colors: [Color(0XFFFFFFFF), Color(0XFFCFCFCF)],
       ),
     );
   }
