@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retro_calculator/screens/calculator/widget/keyboard.dart';
 
 import 'widget/display.dart';
 import '../../utils/constant.dart';
@@ -29,7 +30,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
           child: Column(
             children: [
               Display('0'),
-              Text('Keyboard'),
+              SizedBox(height: 26.0),
+              Keyboard(),
             ],
           ),
         ),
