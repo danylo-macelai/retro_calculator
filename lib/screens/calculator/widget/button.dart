@@ -6,95 +6,146 @@ class Button extends StatelessWidget {
   final String value;
   final Color fontColor;
   final String fontFamily;
+  final bool larger;
   final List<Color> colors;
+  final double top;
+  final double fontSize;
 
   Button.gray({
     @required this.value,
-    this.fontColor = const Color(0XFF707070),
+    this.fontColor = const Color(0X99707070),
     this.fontFamily = 'AdelleSans',
+    this.larger = false,
     this.colors = const [
       Color(0XFFFFFFFF),
       Color(0XFFCFCFCF),
     ],
+    this.top = 10.0,
+    this.fontSize: 36.0,
   });
 
   Button.green({
     @required this.value,
-    this.fontColor = const Color(0XFFFFFFFF),
+    this.fontColor = const Color(0XCCFFFFFF),
     this.fontFamily = 'AdelleSans',
-    this.colors = const [
-      Color(0XFFDB656E),
-      Color(0XFFD92534),
-    ],
-  });
-
-  Button.red({
-    @required this.value,
-    this.fontColor = const Color(0XFFFFFFFF),
-    this.fontFamily = 'Raleway',
+    this.larger = false,
     this.colors = const [
       Color(0XFF84BF9E),
       Color(0XFF48AE75),
     ],
+    this.top = 8.0,
+    this.fontSize: 48.0,
+  });
+
+  Button.red({
+    @required this.value,
+    this.fontColor = const Color(0XCCFFFFFF),
+    this.fontFamily = 'Raleway',
+    this.larger = false,
+    this.colors = const [
+      Color(0XFFDB656E),
+      Color(0XFFD92534),
+    ],
+    this.top = 0.0,
+    this.fontSize: 36.0,
   });
 
   @override
   Widget build(BuildContext context) {
-    double size = 70.0;
-    return InkWell(
-      onTap: () {},
-      child: Stack(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 7.5, left: 0.75),
-            width: size + 10.0,
-            height: size + 10.0,
-            decoration: const ShapeDecoration(
-              color: Color(0X80707070),
-              shape: CircleBorder(),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(bottom: 6.0),
-            width: size + 12.0,
-            height: size + 12.0,
-            decoration: ShapeDecoration(
-              shape: CircleBorder(),
-              gradient: mGradient(
-                Alignment.topCenter,
-                Alignment.bottomCenter,
-                stops: [0.1, 1.0],
-                colors: colors,
+    return Expanded(
+      flex: larger ? 2 : 1,
+      child: InkWell(
+        onTap: () {},
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 12.5, left: 0.75),
+              width: _width(75.0),
+              height: 75.0,
+              decoration: ShapeDecoration(
+                color: Color(0X80707070),
+                shape: _shape,
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.all(6.0),
-            width: size,
-            height: size,
-            decoration: ShapeDecoration(
-              shape: CircleBorder(),
-              gradient: mGradient(
-                Alignment.bottomCenter,
-                Alignment.topCenter,
-                stops: [0.1, 1.0],
-                colors: colors,
-              ),
-            ),
-            child: Center(
-              child: Text(
-                value,
-                style: TextStyle(
-                  color: fontColor,
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: fontFamily,
+            Container(
+              width: _width(76.0),
+              height: 76.0,
+              decoration: ShapeDecoration(
+                shape: _shape,
+                gradient: mGradient(
+                  Alignment.topCenter,
+                  Alignment.bottomCenter,
+                  stops: [0.1, 1.0],
+                  colors: colors,
                 ),
               ),
             ),
-          ),
-        ],
+            Container(
+              width: _width(66, expanded: 28.0),
+              height: 66,
+              alignment: Alignment.center,
+              decoration: ShapeDecoration(
+                shape: _shape,
+                gradient: mGradient(
+                  Alignment.bottomCenter,
+                  Alignment.topCenter,
+                  stops: [0.1, 1.0],
+                  colors: colors,
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(top: top),
+                child: _text,
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  Widget get _text {
+    TextStyle style = TextStyle(
+      color: fontColor,
+      fontSize: fontSize,
+      fontWeight: FontWeight.w400,
+      fontFamily: fontFamily,
+    );
+
+    return value == 'plus-minus'
+        ? /* ± */ Stack(
+            fit: StackFit.expand,
+            children: [
+              Positioned(
+                left: 8.0,
+                bottom: 4.0,
+                child: Text('+', style: style),
+              ),
+              Positioned(
+                top: 6.0,
+                left: 28.0,
+                child: Text('/', style: style.copyWith(fontSize: 36.0)),
+              ),
+              Positioned(
+                right: 12.0,
+                top: 4.0,
+                child: Text('-', style: style),
+              ),
+            ],
+          )
+        : Text(value, style: style);
+  }
+
+  double _width(double width, {double expanded = 16.0}) {
+    return larger ? (width * 2) + expanded : width;
+  }
+
+  ShapeBorder get _shape {
+    return larger
+        ? RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40.0),
+          )
+        : CircleBorder();
   }
 }

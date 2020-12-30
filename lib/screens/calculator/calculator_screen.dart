@@ -15,7 +15,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(12.0),
+          padding: EdgeInsets.symmetric(vertical: 28.0, horizontal: 16.0),
           width: double.maxFinite,
           decoration: BoxDecoration(
             gradient: mGradient(
@@ -28,9 +28,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             ),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Display('0'),
-              SizedBox(height: 26.0),
               Keyboard(),
             ],
           ),

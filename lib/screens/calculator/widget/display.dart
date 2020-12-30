@@ -10,8 +10,8 @@ class Display extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 380.0,
-      height: 168.0,
+      width: 400.0,
+      height: 220.0,
       decoration: BoxDecoration(
         gradient: mGradient(
           Alignment.topLeft,
@@ -40,13 +40,13 @@ class Display extends StatelessWidget {
                 child: AutoSizeText(
                   value,
                   minFontSize: 20,
-                  maxFontSize: 56,
+                  maxFontSize: 64,
                   maxLines: 1,
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     decoration: TextDecoration.none,
-                    fontSize: 56,
+                    fontSize: 64,
                     color: Color(0XFFFFFFFF),
                   ),
                 ),

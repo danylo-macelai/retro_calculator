@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import "dart:math" show pi;
 
+import 'buttons.dart';
 import 'button.dart';
 
 class Keyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 380.0,
-      height: 560.0,
+      width: 400.0,
+      height: 500.0,
       decoration: BoxDecoration(
         color: Color(0XCC886E34),
         borderRadius: BorderRadius.all(Radius.circular(26.0)),
       ),
       child: Container(
-        padding: EdgeInsets.only(top: 22.0),
+        padding: EdgeInsets.only(top: 26.0),
         decoration: BoxDecoration(
           color: Color(0X40886E34),
           borderRadius: BorderRadius.all(Radius.circular(26.0)),
@@ -27,13 +28,40 @@ class Keyboard extends StatelessWidget {
                 bottomLeft: Radius.circular(26.0),
                 bottomRight: Radius.circular(26.0),
               ),
-              color: Color(0XFFEFDFBB),
+              color: Color(0XCCEFDFBB),
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            padding: EdgeInsets.all(18.0),
+            child: Column(
               children: [
-                Button.red(value: 'C'),
+                Buttons([
+                  Button.red(value: 'C'),
+                  Button.green(value: 'plus-minus'),
+                  Button.green(value: '%', fontSize: 36.0),
+                  Button.green(value: '*', top: 20.0),
+                ]),
+                Buttons([
+                  Button.gray(value: '1'),
+                  Button.gray(value: '2'),
+                  Button.gray(value: '3'),
+                  Button.green(value: '÷'),
+                ]),
+                Buttons([
+                  Button.gray(value: '4'),
+                  Button.gray(value: '5'),
+                  Button.gray(value: '6'),
+                  Button.green(value: '-'),
+                ]),
+                Buttons([
+                  Button.gray(value: '7'),
+                  Button.gray(value: '8'),
+                  Button.gray(value: '9'),
+                  Button.green(value: '+'),
+                ]),
+                Buttons([
+                  Button.gray(value: '0', larger: true),
+                  Button.gray(value: '.'),
+                  Button.red(value: '=', fontSize: 48.0),
+                ]),
               ],
             ),
           ),
