@@ -3,9 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:retro_calculator/utils/constant.dart';
 
 class Display extends StatelessWidget {
-  final String value;
+  final String answer;
 
-  Display(this.value);
+  Display(this.answer);
 
   @override
   Widget build(BuildContext context) {
@@ -30,30 +30,36 @@ class Display extends StatelessWidget {
         ),
         child: Container(
           margin: EdgeInsets.all(10.0),
+          padding: EdgeInsets.symmetric(horizontal: 12.0),
           color: Color(0XFF520000),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 20.0),
-                child: AutoSizeText(
-                  value,
-                  minFontSize: 20,
-                  maxFontSize: 64,
-                  maxLines: 1,
-                  textAlign: TextAlign.end,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    decoration: TextDecoration.none,
-                    fontSize: 64,
-                    color: Color(0XFFFFFFFF),
-                  ),
-                ),
-              ),
+              _autoSizeText(answer, minFontSize: 20, maxFontSize: 64),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  AutoSizeText _autoSizeText(
+    String value, {
+    double minFontSize: 14,
+    double maxFontSize: 26,
+  }) {
+    return AutoSizeText(
+      value,
+      minFontSize: minFontSize,
+      maxFontSize: maxFontSize,
+      maxLines: 1,
+      textAlign: TextAlign.end,
+      style: TextStyle(
+        fontWeight: FontWeight.w400,
+        decoration: TextDecoration.none,
+        fontSize: maxFontSize,
+        color: Color(0XFFFFFFFF),
       ),
     );
   }

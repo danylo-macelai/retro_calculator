@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:retro_calculator/models/calculator.dart';
 import 'package:retro_calculator/utils/constant.dart';
 
 class Button extends StatelessWidget {
-  final String value;
+  final Command command;
   final Color fontColor;
   final String fontFamily;
   final bool larger;
   final List<Color> colors;
   final double top;
   final double fontSize;
+  final void Function(Command) onTap;
 
   Button.gray({
-    @required this.value,
+    @required this.command,
+    @required this.onTap,
     this.fontColor = const Color(0X99707070),
     this.fontFamily = 'AdelleSans',
     this.larger = false,
@@ -25,7 +28,8 @@ class Button extends StatelessWidget {
   });
 
   Button.green({
-    @required this.value,
+    @required this.command,
+    @required this.onTap,
     this.fontColor = const Color(0XCCFFFFFF),
     this.fontFamily = 'AdelleSans',
     this.larger = false,
@@ -38,7 +42,8 @@ class Button extends StatelessWidget {
   });
 
   Button.red({
-    @required this.value,
+    @required this.command,
+    @required this.onTap,
     this.fontColor = const Color(0XCCFFFFFF),
     this.fontFamily = 'Raleway',
     this.larger = false,
@@ -47,7 +52,7 @@ class Button extends StatelessWidget {
       Color(0XFFD92534),
     ],
     this.top = 0.0,
-    this.fontSize: 36.0,
+    this.fontSize: 36.0, String value,
   });
 
   @override
@@ -55,7 +60,9 @@ class Button extends StatelessWidget {
     return Expanded(
       flex: larger ? 2 : 1,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          onTap(command);
+        },
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
@@ -113,8 +120,8 @@ class Button extends StatelessWidget {
       fontFamily: fontFamily,
     );
 
-    return value == 'plus-minus'
-        ? /* ± */ Stack(
+    return Command.plus_minus == command
+        ? Stack(
             fit: StackFit.expand,
             children: [
               Positioned(
@@ -134,7 +141,7 @@ class Button extends StatelessWidget {
               ),
             ],
           )
-        : Text(value, style: style);
+        : Text(command.value, style: style);
   }
 
   double _width(double width, {double expanded = 16.0}) {

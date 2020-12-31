@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:retro_calculator/models/calculator.dart';
 import "dart:math" show pi;
 
 import 'buttons.dart';
 import 'button.dart';
 
 class Keyboard extends StatelessWidget {
+  final void Function(Command) onCalculate;
+
+  Keyboard(this.onCalculate);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,33 +39,44 @@ class Keyboard extends StatelessWidget {
             child: Column(
               children: [
                 Buttons([
-                  Button.red(value: 'C'),
-                  Button.green(value: 'plus-minus'),
-                  Button.green(value: '%', fontSize: 36.0),
-                  Button.green(value: '*', top: 20.0),
+                  Button.red(command: Command.clean, onTap: onCalculate),
+                  Button.green(command: Command.plus_minus, onTap: onCalculate),
+                  Button.green(
+                      command: Command.percentage,
+                      fontSize: 36.0,
+                      onTap: onCalculate),
+                  Button.green(
+                      command: Command.multiplication,
+                      top: 20.0,
+                      onTap: onCalculate),
                 ]),
                 Buttons([
-                  Button.gray(value: '1'),
-                  Button.gray(value: '2'),
-                  Button.gray(value: '3'),
-                  Button.green(value: '÷'),
+                  Button.gray(command: Command.one, onTap: onCalculate),
+                  Button.gray(command: Command.two, onTap: onCalculate),
+                  Button.gray(command: Command.three, onTap: onCalculate),
+                  Button.green(command: Command.division, onTap: onCalculate),
                 ]),
                 Buttons([
-                  Button.gray(value: '4'),
-                  Button.gray(value: '5'),
-                  Button.gray(value: '6'),
-                  Button.green(value: '-'),
+                  Button.gray(command: Command.four, onTap: onCalculate),
+                  Button.gray(command: Command.five, onTap: onCalculate),
+                  Button.gray(command: Command.six, onTap: onCalculate),
+                  Button.green(
+                      command: Command.subtraction, onTap: onCalculate),
                 ]),
                 Buttons([
-                  Button.gray(value: '7'),
-                  Button.gray(value: '8'),
-                  Button.gray(value: '9'),
-                  Button.green(value: '+'),
+                  Button.gray(command: Command.seven, onTap: onCalculate),
+                  Button.gray(command: Command.eight, onTap: onCalculate),
+                  Button.gray(command: Command.nine, onTap: onCalculate),
+                  Button.green(command: Command.addition, onTap: onCalculate),
                 ]),
                 Buttons([
-                  Button.gray(value: '0', larger: true),
-                  Button.gray(value: '.'),
-                  Button.red(value: '=', fontSize: 48.0),
+                  Button.gray(
+                      command: Command.zero, larger: true, onTap: onCalculate),
+                  Button.gray(command: Command.dot, onTap: onCalculate),
+                  Button.red(
+                      command: Command.equals,
+                      fontSize: 48.0,
+                      onTap: onCalculate),
                 ]),
               ],
             ),

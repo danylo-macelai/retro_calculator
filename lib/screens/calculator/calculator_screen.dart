@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retro_calculator/models/calculator.dart';
 import 'package:retro_calculator/screens/calculator/widget/keyboard.dart';
 
 import 'widget/display.dart';
@@ -10,6 +11,14 @@ class CalculatorScreen extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
+  final Calculator calculator = Calculator();
+
+  _onCalculate(Command command) {
+    setState(() {
+      calculator.applyCommand(command);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +40,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Display('0'),
-              Keyboard(),
+              Display(calculator.answer),
+              Keyboard(_onCalculate),
             ],
           ),
         ),
