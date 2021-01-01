@@ -11,6 +11,7 @@ class Calculator {
   int _index = 0;
   Command _operation;
   String _answer = '0';
+  bool _reset = false; 
 
   void applyCommand(Command command) {
     if (Command.clean == command) {
@@ -31,6 +32,7 @@ class Calculator {
     _index = 0;
     _operation = null;
     _answer = '0';
+    _reset = false;
   }
 
   _plusMinus() {
@@ -61,7 +63,7 @@ class Calculator {
     } else {
       _operation = operation;
       _index = 1;
-      _answer = '0';
+      _reset = true;
     }
   }
 
@@ -71,9 +73,11 @@ class Calculator {
       return;
     }
     final empty = dot ? '0' : '';
-    final value = _answer == '0' ? empty : _answer;
+    final answer = _answer == '0' ? empty : _answer;
+    final value = _reset ? '' : answer;
     _answer = value + digit.value;
     _memory[_index] = double.tryParse(_answer);
+    _reset = false;
   }
 
   String _toDisplay(double number) {
